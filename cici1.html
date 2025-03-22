@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Happy BIRTHDAY CICI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+        margin: 0;
+        padding: 0;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Confetti animation */
+      .confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0.7;
+        animation: confetti-fall 5s linear infinite;
+      }
+      
+      @keyframes confetti-fall {
+        0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(calc(100vh + 100px)) rotate(360deg); opacity: 0.2; }
+      }
+      
+      /* Container untuk balon */
+      .balloons-mountain {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 10px;
+      }
+      .balloons-mountain .row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      /* Style balon dengan efek mengkilap */
+      .balloon {
+        width: 50px;
+        height: 70px;
+        border-radius: 50% 50% 45% 45%;
+        box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+      .balloon:after {
+        content: '';
+        display: block;
+        width: 2px;
+        height: 20px;
+        background-color: #555;
+        margin: auto;
+        margin-top: -5px;
+      }
+      .balloon:before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.3);
+        top: 10px;
+        left: 10px;
+        border-radius: 50%;
+      }
+      
+      /* Animasi naik ke atas dan berpindah ke kiri atau kanan dengan jarak yang lebih jauh */
+      @keyframes rise-left {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-300px, -300px); }
+      }
+      @keyframes rise-right {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(300px, -300px); }
+      }
+      
+      .balloon.rise-left {
+        animation: rise-left 5s ease-out forwards;
+      }
+      .balloon.rise-right {
+        animation: rise-right 5s ease-out forwards;
+      }
+      
+      .candle-count-display {
+        text-align: center;
+        margin-top: 150px;
+        margin-bottom: 20px;
+        font-size: 35px;
+        font-weight: bold;
+        color: #f0e4d0;
+        background: linear-gradient(to right, #a72142, #ff4d79);
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        border: 3px solid #ffc2d1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        /* Animasi bounce */
+        animation: bounce 2s ease-out forwards;
+        z-index: 2;
+        letter-spacing: 2px;
+      }
+      
+      @keyframes bounce {
+        0% { transform: translateY(-200px); opacity: 0; }
+        60% { transform: translateY(20px); opacity: 1; }
+        80% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+      }
+
+      .cake {
+        position: absolute;
+        width: 250px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        margin-top: -70px;
+        margin-left: -125px;
+        /* Animasi rotate */
+        animation: cakeAppear 2.5s ease-out forwards;
+        z-index: 2;
+      }
+      
+      @keyframes cakeAppear {
+        0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+        60% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+        100% { transform: scale(1) rotate(0deg); }
+      }
+
+      .plate {
+        width: 290px;
+        height: 110px;
+        position: absolute;
+        bottom: -10px;
+        left: -20px;
+        background: linear-gradient(to bottom, #e6e6e6, #ccc);
+        border-radius: 50%;
+        box-shadow: 0 2px 0 #b3b3b3, 0 4px 0 #b3b3b3, 0 5px 40px rgba(0, 0, 0, 0.5);
+      }
+      .cake > * {
+        position: absolute;
+      }
+      .layer {
+        position: absolute;
+        display: block;
+        width: 250px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(to bottom, #ffcad4, #ffc2d1);
+        box-shadow: 0 2px 0px #ff97b1, 0 4px 0px #2c171c, 0 6px 0px #ff8fab,
+                    0 8px 0px #ff8fab, 0 10px 0px #ff8fab, 0 12px 0px #ff8fab,
+                    0 14px 0px #ff8fab, 0 16px 0px #ff8fab, 0 18px 0px #ff8fab,
+                    0 20px 0px #ff8fab, 0 22px 0px #ff8fab, 0 24px 0px #ff8fab,
+                    0 26px 0px #ff8fab, 0 28px 0px #ff8fab, 0 30px 0px #ff8fab;
+      }
+      .layer-top { top: 0px; }
+      .layer-middle { top: 33px; }
+      .layer-bottom { top: 66px; }
+
+      .icing {
+        top: 2px;
+        left: 5px;
+        background-color: #f0e4d0;
+        width: 240px;
+        height: 90px;
+        border-radius: 50%;
+      }
+      .icing:before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        right: 5px;
+        bottom: 6px;
+        left: 5px;
+        background-color: #f4ebdc;
+        box-shadow: 0 0 4px #f6efe3, 0 0 4px #f6efe3, 0 0 4px #f6efe3;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      /* Sprinkles on the cake */
+      .sprinkle {
+        position: absolute;
+        width: 5px;
+        height: 2px;
+        border-radius: 1px;
+        z-index: 5;
+      }
+
+      .drip {
+        display: block;
+        width: 50px;
+        height: 60px;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        background-color: #f0e4d0;
+      }
+      .drip1 {
+        top: 53px;
+        left: 5px;
+        transform: skewY(15deg);
+        height: 48px;
+        width: 40px;
+      }
+      .drip2 {
+        top: 69px;
+        left: 181px;
+        transform: skewY(-15deg);
+      }
+      .drip3 {
+        top: 54px;
+        left: 90px;
+        width: 80px;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
+
+      .candle {
+        background: linear-gradient(to right, #7B020B, #ad030f);
+        width: 12px;
+        height: 35px;
+        border-radius: 6px/3px;
+        top: -20px;
+        left: 50%;
+        margin-left: -8px;
+        z-index: 10;
+      }
+      .candle:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 12px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #ad030f;
+      }
+      .candle.out .flame {
+        display: none;
+      }
+      .flame {
+        position: absolute;
+        background: linear-gradient(to bottom, yellow, orange);
+        width: 12px;
+        height: 30px;
+        border-radius: 8px 8px 8px 8px/20px 20px 8px 8px;
+        top: -38px;
+        left: 50%;
+        margin-left: -8px;
+        z-index: 10;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.5),
+                    0 0 20px rgba(255, 165, 0, 0.5),
+                    0 0 60px rgba(255, 165, 0, 0.5),
+                    0 0 80px rgba(255, 165, 0, 0.5);
+        transform-origin: 50% 90%;
+        animation: flicker 1s ease-in-out alternate infinite;
+      }
+      @keyframes flicker {
+        0% {
+          transform: skewX(5deg);
+          box-shadow: 0 0 10px rgba(255, 165, 0, 0.2),
+                      0 0 20px rgba(255, 165, 0, 0.2),
+                      0 0 60px rgba(255, 165, 0, 0.2),
+                      0 0 80px rgba(255, 165, 0, 0.2);
+        }
+        25% {
+          transform: skewX(-5deg);
+          box-shadow: 0 0 10px rgba(255, 165, 0, 0.5),
+                      0 0 20px rgba(255, 165, 0, 0.5),
+                      0 0 60px rgba(255, 165, 0, 0.5),
+                      0 0 80px rgba(255, 165, 0, 0.5);
+        }
+        50% {
+          transform: skewX(10deg);
+          box-shadow: 0 0 10px rgba(255, 165, 0, 0.3),
+                      0 0 20px rgba(255, 165, 0, 0.3),
+                      0 0 60px rgba(255, 165, 0, 0.3),
+                      0 0 80px rgba(255, 165, 0, 0.3);
+        }
+        75% {
+          transform: skewX(-10deg);
+          box-shadow: 0 0 10px rgba(255, 165, 0, 0.4),
+                      0 0 20px rgba(255, 165, 0, 0.4),
+                      0 0 60px rgba(255, 165, 0, 0.4),
+                      0 0 80px rgba(255, 165, 0, 0.4);
+        }
+        100% {
+          transform: skewX(5deg);
+          box-shadow: 0 0 10px rgba(255, 165, 0, 0.5),
+                      0 0 20px rgba(255, 165, 0, 0.5),
+                      0 0 60px rgba(255, 165, 0, 0.5),
+                      0 0 80px rgba(255, 165, 0, 0.5);
+        }
+      }
+
+      /* Tombol "Click me!" dengan animasi improved */
+      .birthday-button {
+        position: absolute;
+        top: calc(50% + 160px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 25px;
+        background: linear-gradient(to right, #ff69b4, #ff1493);
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 50px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        z-index: 5;
+        border: 2px solid #ffffff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: pulsate 1.5s ease-out infinite, slideDownButton 2s ease-out forwards 1.5s;
+      }
+      .birthday-button:hover {
+        background: linear-gradient(to right, #ff1493, #ff69b4);
+        transform: translateX(-50%) scale(1.1);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      @keyframes pulsate {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.05); }
+        100% { transform: translateX(-50%) scale(1); }
+      }
+
+      /* Animasi khusus untuk tombol */
+      @keyframes slideDownButton {
+        0% {
+          transform: translateX(-50%) translateY(-200px);
+          opacity: 0;
+        }
+        60% {
+          transform: translateX(-50%) translateY(20px);
+          opacity: 1;
+        }
+        80% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        100% {
+          transform: translateX(-50%) translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(to right, #ffb6c1, #ff69b4);
+        color: white;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      .heart {
+        animation: heartbeat 1s ease infinite;
+        width: 20px;
+        height: 20px;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+      @keyframes heartbeat {
+        0% { transform: scale(1); }
+        25% { transform: scale(1.2); }
+        50% { transform: scale(1); }
+        75% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+      
+      /* Decorative stars */
+      .stars-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      
+      .star {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        opacity: 0.8;
+      }
+      
+      .star:before {
+        content: "★";
+        position: absolute;
+        color: #FFD700;
+        font-size: 20px;
+        animation: twinkle 1.5s infinite alternate;
+      }
+      
+      @keyframes twinkle {
+        0% { opacity: 0.2; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1.2); }
+      }
+      
+      .gifts-container {
+        position: fixed;
+        bottom: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around; /* Gift berjauhan saat layar besar */
+        z-index: 1;
+      }
+
+      /* Saat layar kecil/minimized */
+      @media (max-width: 480px) {
+        .gifts-container {
+          justify-content: center;
+          gap: 10px; /* Atur gap sesuai keinginan, misal 10px agar gift berdekatan */
+        }
+      }
+
+      
+      .gift {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff6b6b, #cc5252);
+        position: relative;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        animation: float 3s ease-in-out infinite;
+      }
+      
+      .gift:nth-child(2) {
+        background: linear-gradient(135deg, #4ecdc4, #1a9b8f);
+        animation-delay: 0.5s;
+      }
+      
+      .gift:nth-child(3) {
+        background: linear-gradient(135deg, #fcbf49, #f77f00);
+        animation-delay: 1s;
+      }
+      
+      .gift:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 60px;
+        background: linear-gradient(to bottom, gold, #ffd700);
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+      }
+      
+      .gift:after {
+        content: '';
+        position: absolute;
+        width: 70px;
+        height: 15px;
+        background: linear-gradient(to right, gold, #ffd700);
+        top: 45%;
+        left: -5px;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+      
+      @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+      }
+      
+      /* Rainbow border around the page */
+      .rainbow-border {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        border: 10px solid transparent;
+        border-image: linear-gradient(
+          45deg, 
+          red, 
+          orange, 
+          yellow, 
+          green, 
+          blue, 
+          indigo, 
+          violet, 
+          red) 1;
+        z-index: 100;
+        animation: rainbow-border 10s linear infinite;
+      }
+      
+      @keyframes rainbow-border {
+        0% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red) 1; }
+        20% { border-image: linear-gradient(45deg, violet, red, orange, yellow, green, blue, indigo, violet) 1; }
+        40% { border-image: linear-gradient(45deg, indigo, violet, red, orange, yellow, green, blue, indigo) 1; }
+        60% { border-image: linear-gradient(45deg, blue, indigo, violet, red, orange, yellow, green, blue) 1; }
+        80% { border-image: linear-gradient(45deg, green, blue, indigo, violet, red, orange, yellow, green) 1; }
+        100% { border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red) 1; }
+      }
+      
+      /* Hide audio player but keep it functional */
+      .audio-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!-- Confetti container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+    
+    <!-- Stars background -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Container untuk balon-balon -->
+    <div class="balloons-mountain">
+      <div class="row">
+        <div class="balloon rise-left" style="background-color: #ff4d4d;"></div>
+        <div class="balloon rise-right" style="background-color: #4d79ff;"></div>
+      </div>
+      <div class="row">
+        <div class="balloon rise-left" style="background-color: #ffcc00;"></div>
+        <div class="balloon rise-right" style="background-color: #66ff66;"></div>
+        <div class="balloon rise-left" style="background-color: #ff66cc;"></div>
+        <div class="balloon rise-right" style="background-color: #ff8c00;"></div>
+      </div>
+      <div class="row">
+        <div class="balloon rise-left" style="background-color: #8a2be2;"></div>
+        <div class="balloon rise-right" style="background-color: #00ced1;"></div>
+        <div class="balloon rise-left" style="background-color: #ff1493;"></div>
+        <div class="balloon rise-right" style="background-color: #7fff00;"></div>
+        <div class="balloon rise-left" style="background-color: #00bfff;"></div>
+        <div class="balloon rise-right" style="background-color: #ff69b4;"></div>
+      </div>
+      <div class="row">
+        <div class="balloon rise-left" style="background-color: #ff1493;"></div>
+        <div class="balloon rise-right" style="background-color: #7fff00;"></div>
+        <div class="balloon rise-left" style="background-color: #00bfff;"></div>
+        <div class="balloon rise-right" style="background-color: #ff69b4;"></div>
+      </div>
+      <div class="row">
+        <div class="balloon rise-left" style="background-color: #66ff66;"></div>
+        <div class="balloon rise-right" style="background-color: #ff66cc;"></div>
+      </div>
+    </div>
+    
+    <!-- Gift boxes decoration -->
+    <div class="gifts-container">
+      <div class="gift"></div>
+      <div class="gift"></div>
+      <div class="gift"></div>
+    </div>
+
+    <div class="candle-count-display">
+      ✨ HAPPY BIRTHDAY CICI! ✨
+    </div>
+    <div class="cake">
+      <div id="candleCount" style="display:none;"></div>
+      <div class="plate"></div>
+      <div class="layer layer-bottom"></div>
+      <div class="layer layer-middle"></div>
+      <div class="layer layer-top"></div>
+      <div class="icing"></div>
+      <div class="drip drip1"></div>
+      <div class="drip drip2"></div>
+      <div class="drip drip3"></div>
+      <!-- Lilin ditambahkan di sini -->
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
+      <!-- Random sprinkles will be added by JavaScript -->
+    </div>
+    
+    <!-- Hidden audio player with autoplay -->
+    <div class="audio-container">
+      <audio id="birthdayAudio" autoplay loop>
+        <source src="h.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <a href="cici.html" class="birthday-button">HADIAH</a>
+
+    <div class="footer">
+      <span>CICI PENGUASA BUMI</span>
+      <svg class="heart" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.488"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="#ff6999"></path>
+        </g>
+      </svg>
+      <span>HAPPY BIRTHDAY!</span>
+    </div>
+    
+    <script>
+      // Generate confetti
+      function createConfetti() {
+        const confettiContainer = document.getElementById('confettiContainer');
+        const colors = ['#ff4d4d', '#ffcc00', '#66ff66', '#4d79ff', '#ff66cc', '#ff8c00', '#8a2be2', '#00ced1'];
+        
+        for (let i = 0; i < 100; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.width = Math.random() * 12 + 5 + 'px';
+          confetti.style.height = Math.random() * 6 + 5 + 'px';
+          confetti.style.animationDelay = Math.random() * 5 + 's';
+          confetti.style.animationDuration = Math.random() * 3 + 3 + 's';
+          
+          confettiContainer.appendChild(confetti);
+        }
+      }
+      
+      // Create stars
+      function createStars() {
+        const starsContainer = document.getElementById('starsContainer');
+        
+        for (let i = 0; i < 30; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.left = Math.random() * 100 + 'vw';
+          star.style.top = Math.random() * 100 + 'vh';
+          star.style.animationDelay = Math.random() * 2 + 's';
+          
+          starsContainer.appendChild(star);
+        }
+      }
+      
+      // Add sprinkles to cake
+      function addSprinklesToCake() {
+        const cake = document.querySelector('.icing');
+        const colors = ['#ff4d4d', '#ffcc00', '#66ff66', '#4d79ff', '#ff66cc', '#ff8c00'];
+        
+        for (let i = 0; i < 50; i++) {
+          const sprinkle = document.createElement('div');
+          sprinkle.className = 'sprinkle';
+          sprinkle.style.left = Math.random() * 230 + 5 + 'px';
+          sprinkle.style.top = Math.random() * 80 + 5 + 'px';
+          sprinkle.style.transform = 'rotate(' + Math.random() * 90 + 'deg)';
+          sprinkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          
+          cake.appendChild(sprinkle);
+        }
+      }
+      
+      // Ensure audio plays automatically (workaround for browsers that block autoplay)
+      function setupAudio() {
+        const audio = document.getElementById('birthdayAudio');
+        
+        // Try to play the audio
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            // Auto-play was prevented
+            // We need to wait for user interaction
+            document.addEventListener('click', () => {
+              audio.play();
+            }, { once: true });
+          });
+        }
+      }
+      
+      // Initialize all decorations
+      window.onload = function() {
+        createConfetti();
+        createStars();
+        addSprinklesToCake();
+        setupAudio();
+      };
+    </script>
+  </body>
+</html>

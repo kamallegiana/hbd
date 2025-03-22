@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Cici Cahyani</title>
+  <!-- Updated font selection -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Short+Stack&family=Homemade+Apple&family=Poppins:wght@300;400;600&display=swap">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Global Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffeef8 0%, #fff0f5 100%);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+      /* Animasi saat halaman muncul */
+      animation: fadeInPage 1s ease-in-out;
+    }
+    
+    /* Keyframe animasi fade-in untuk halaman */
+    @keyframes fadeInPage {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Decorative Elements - Enhanced */
+    .decoration {
+      position: fixed;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .heart {
+      position: absolute;
+      background: #ff69b4;
+      height: 30px;
+      width: 30px;
+      transform: rotate(-45deg);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .heart:before, 
+    .heart:after {
+      content: "";
+      background: #ff69b4;
+      border-radius: 50%;
+      height: 30px;
+      position: absolute;
+      width: 30px;
+    }
+    
+    .heart:before {
+      top: -15px;
+      left: 0;
+    }
+    
+    .heart:after {
+      left: 15px;
+      top: 0;
+    }
+    
+    /* New decorative elements */
+    .butterfly {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at center, #ffb6c1, #ff69b4);
+      border-radius: 50% 50% 0 0;
+      animation: flyButterfly 12s linear infinite;
+      opacity: 0.25;
+    }
+    
+    .butterfly:before,
+    .butterfly:after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 20px;
+      background: radial-gradient(circle at center, #ffb6c1, #ff69b4);
+      border-radius: 50%;
+    }
+    
+    .butterfly:before {
+      left: -10px;
+      top: 5px;
+      transform: rotate(-30deg);
+    }
+    
+    .butterfly:after {
+      right: -10px;
+      top: 5px;
+      transform: rotate(30deg);
+    }
+    
+    @keyframes flyButterfly {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); }
+      25% { transform: translateY(-50px) translateX(50px) rotate(15deg); }
+      50% { transform: translateY(-100px) translateX(0) rotate(0deg); }
+      75% { transform: translateY(-50px) translateX(-50px) rotate(-15deg); }
+      100% { transform: translateY(0) translateX(0) rotate(0deg); }
+    }
+    
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #ffddee;
+      border-radius: 50%;
+      animation: sparkle 4s linear infinite;
+      opacity: 0;
+    }
+    
+    @keyframes sparkle {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+    
+    @keyframes float {
+      0% { transform: rotate(-45deg) translateY(0px); }
+      50% { transform: rotate(-45deg) translateY(-20px); }
+      100% { transform: rotate(-45deg) translateY(0px); }
+    }
+    
+    .flower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      opacity: 0.15;
+      z-index: -1;
+      background: radial-gradient(circle at center, #ffb6c1, #ff69b4);
+      border-radius: 50%;
+      /* Gunakan animasi floatFlower untuk efek melayang dan berputar */
+      animation: floatFlower 8s ease-in-out infinite;
+    }
+    
+    /* Add petals to flowers */
+    .flower:before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: 5px;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at center, #ffb6c1, #ff69b4);
+      border-radius: 50% 50% 0 50%;
+      transform: rotate(45deg);
+    }
+    
+    .flower:after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: -15px;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at center, #ffb6c1, #ff69b4);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(45deg);
+    }
+    
+    @keyframes floatFlower {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+    
+    /* Hero Section (Judul & Slider) */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+    }
+    
+    .title-container {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    .title {
+      font-family: 'Dancing Script', cursive;
+      color: #ff1493;
+      font-size: 4em;
+      text-shadow: 3px 3px 6px rgba(255, 20, 147, 0.3);
+      margin-bottom: 10px;
+      animation: fadeIn 1.5s ease-in-out;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .subtitle {
+      font-family: 'Short Stack', cursive;
+      color: #9c27b0;
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    
+    .title-decoration {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      bottom: -5px;
+      left: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,10 C30,20 70,0 100,10 L100,20 L0,20 Z' fill='%23ff69b4' fill-opacity='0.2'/%3E%3C/svg%3E");
+      background-size: 100px 20px;
+      animation: wave 3s linear infinite;
+    }
+    
+    @keyframes wave {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 100px; }
+    }
+    
+    /* Slider Styling */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    
+    .slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      margin: 0 auto;
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+      background: transparent;
+    }
+    
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: calc(100% + 20px);
+      height: calc(100% + 20px);
+      top: -10px;
+      left: -10px;
+      background: linear-gradient(45deg, #f06, #9c27b0, #3f51b5, #00bcd4);
+      background-size: 400% 400%;
+      z-index: -1;
+      border-radius: 25px;
+      animation: gradient 5s ease infinite;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+      transform: scale(0.8) translateX(100%);
+    }
+    
+    .slide.active {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+    }
+    
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .slide:hover img {
+      transform: scale(1.05);
+    }
+    
+    .slide-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 12px 25px;
+      background: rgba(255, 20, 147, 0.8);
+      color: #fff;
+      font-family: 'Short Stack', cursive;
+      font-size: 1.1em;
+      border-radius: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+      animation: fadeInUp 0.8s ease-in-out;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 80%;
+      backdrop-filter: blur(5px);
+    }
+    
+    .controls {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      box-sizing: border-box;
+      z-index: 2;
+    }
+    
+    .controls span {
+      font-size: 2.5em;
+      background: rgba(255, 255, 255, 0.7);
+      color: #ff1493;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    .controls span:hover {
+      background: #fff;
+      color: #9c27b0;
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Divider - IMPROVED FOR MOBILE */
+    .divider {
+      position: relative;
+      height: 60px;
+      width: 90%;
+      max-width: 500px;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .divider h2 {
+      font-family: 'Homemade Apple', cursive;
+      color: #ff1493;
+      text-align: center;
+      z-index: 2;
+      background: rgba(255, 238, 248, 0.8);
+      padding: 0 15px;
+      margin: 0;
+      font-size: 1.2em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .divider::before, .divider::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #ff69b4, transparent);
+      width: 35%;
+    }
+    
+    .divider::before {
+      left: 0;
+    }
+    
+    .divider::after {
+      right: 0;
+    }
+    
+    /* Content Section */
+    .content {
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      border-radius: 30px;
+      margin: 20px auto;
+      max-width: 90%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .content h1, .content h2 {
+      font-family: 'Dancing Script', cursive;
+      color: #9c27b0;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .content h2::after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(to right, transparent, #ff69b4, transparent);
+      bottom: -10px;
+      left: 15%;
+    }
+    
+    .content p {
+      font-size: 1.1em;
+      max-width: 800px;
+      margin: 20px auto;
+      color: #555;
+    }
+    
+    /* For You Section */
+    .for-you {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    
+    .for-you h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      color: #ff1493;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.3);
+    }
+    
+    .for-you img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transition: transform 0.5s ease;
+      border: 10px solid white;
+      max-height: 500px;
+      object-fit: cover;
+    }
+    
+    .for-you img:hover {
+      transform: scale(1.03);
+    }
+    
+    /* New glowing heart decoration around special image */
+    .special-image-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .heart-glow {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      animation: pulseGlow 2s infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(to right, #ff69b4, #9c27b0);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer p {
+      font-family: 'Homemade Apple', cursive;
+      font-size: 1.3em;
+      margin: 0;
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(135deg, transparent 50%, #ffeef8 50%);
+      background-size: 20px 20px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design - IMPROVED */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 3em;
+      }
+      
+      .controls span {
+        width: 40px;
+        height: 40px;
+        font-size: 1.8em;
+      }
+      
+      .content {
+        padding: 30px 15px;
+        margin: 15px auto;
+      }
+      
+      .divider {
+        height: 50px;
+        width: 95%;
+      }
+      
+      .divider h2 {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+      
+      .divider::before, .divider::after {
+        width: 30%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .title {
+        font-size: 2.5em;
+      }
+      
+      .subtitle {
+        font-size: 1em;
+      }
+      
+      .controls span {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5em;
+      }
+      
+      .divider {
+        height: 40px;
+      }
+      
+      .divider h2 {
+        font-size: 0.9em;
+      }
+      
+      .content h1, .content h2 {
+        font-size: 2em;
+      }
+      
+      .content p {
+        font-size: 1em;
+      }
+      
+      .for-you h1 {
+        font-size: 2.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative Elements -->
+  <div id="decorations"></div>
+
+  <!-- Hero Section: Judul & Slider -->
+  <section class="hero">
+    <div class="title-container">
+      <h1 class="title">CICI CAHYANI</h1>
+      <div class="title-decoration"></div>
+    </div>
+    
+   
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide active">
+          <img src="i.jpg" alt="Cici Cahyani">
+        </div>
+        <div class="slide">
+          <img src="b.jpg" alt="Cici Cahyani">
+        </div>
+        <div class="slide">
+          <img src="c.jpg" alt="Cici Cahyani">
+        </div>
+        <div class="slide">
+          <img src="d.jpg" alt="Cici Cahyani">
+        </div>
+        <div class="controls">
+          <span class="prev">&#10094;</span>
+          <span class="next">&#10095;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="divider">
+    <h2></h2>
+  </div>
+
+  <audio src="m.mp3"></audio>
+  
+  <!-- For You Section -->
+  <section class="for-you">
+    <h1>FOR YOU</h1>
+    <div class="special-image-container">
+      <img src="h.jpg" alt="Special Moment" class="special-image">
+      <div id="heart-glows"></div>
+    </div>
+  </section>
+  
+  <div class="divider">
+    <h2>~~~~</h2>
+  </div>
+  
+  <section class="content">
+    <h2>Ucapan</h2>
+    <p>
+      Terima kasih telah datang seperti gerimis yang tak pernah bertanya apakah bumi siap menerima basahnya. Kau menyelinap dalam hari-hariku, menjadikannya lebih dari sekadar hitungan waktu, melainkan nyanyian yang lirih namun abadi.  
+    </p>
+    <p>
+      Bersamamu, aku mengerti bahwa bahagia bukan sekadar tawa, tetapi tatapan yang tak perlu kata, genggaman yang tak meminta balas, dan hadir yang tak pernah ingin pergi
+    </p>
+  </section>
+  
+  <div class="divider">
+    <h2>Harapan & Impian</h2>
+  </div>
+  
+  <section class="content">
+    <h2>you</h2>
+    <p>Aku ingin menenun masa depan bersamamu, merajut mimpi-mimpi kita menjadi kenyataan, dan menulis kisah yang tak hanya indah, tetapi juga abadi dalam ingatan. Setiap langkah dalam perjalanan ini akan lebih berarti, sebab ada kau di sisiku—seperti senja yang selalu pulang pada cakrawala.</p>
+    <p>Semoga segala yang kita impikan bersama tumbuh seperti pagi yang tak pernah lupa menjanjikan cahaya. Dan apa pun yang menanti di depan, kita tetap berjalan berdampingan, sebab bersamamu, segala musim terasa lebih hangat, segala perjalanan menemukan arahnya.</p>
+  </section>
+  
+  <div class="divider">
+    <h2>Terimakasih</h2>
+  </div>
+  
+  <footer>
+    <p>Selalu untukmu ♥</p>
+  </footer>
+  
+  <script>
+    // Slider functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+  
+    function showSlide(index) {
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+        setTimeout(() => {
+          slide.style.zIndex = "-1";
+        }, 800);
+      });
+      slides[index].classList.add('active');
+      slides[index].style.zIndex = "1";
+    }
+  
+    document.querySelector('.next').addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    });
+  
+    document.querySelector('.prev').addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    });
+  
+    // Auto slide every 5 seconds
+    let slideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }, 5000);
+    
+    // Pause slider on hover
+    document.querySelector('.slider').addEventListener('mouseenter', () => {
+      clearInterval(slideInterval);
+    });
+    
+    document.querySelector('.slider').addEventListener('mouseleave', () => {
+      slideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }, 5000);
+    });
+  
+    // Create floating decorative elements (hearts)
+    function createDecorations() {
+      const decorations = document.getElementById('decorations');
+      
+      // Create hearts
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('decoration', 'heart');
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.top = `${Math.random() * 200}vh`;
+        heart.style.opacity = `${Math.random() * 0.2 + 0.05}`;
+        heart.style.transform = `rotate(-45deg) scale(${Math.random() * 0.5 + 0.5})`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        decorations.appendChild(heart);
+      }
+      
+      // Create butterflies
+      for (let i = 0; i < 8; i++) {
+        const butterfly = document.createElement('div');
+        butterfly.classList.add('decoration', 'butterfly');
+        butterfly.style.left = `${Math.random() * 100}vw`;
+        butterfly.style.top = `${Math.random() * 200}vh`;
+        butterfly.style.animationDelay = `${Math.random() * 5}s`;
+        decorations.appendChild(butterfly);
+      }
+      
+      // Create sparkles
+      for (let i = 0; i < 20; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('decoration', 'sparkle');
+        sparkle.style.left = `${Math.random() * 100}vw`;
+        sparkle.style.top = `${Math.random() * 200}vh`;
+        sparkle.style.animationDelay = `${Math.random() * 4}s`;
+        decorations.appendChild(sparkle);
+      }
+    }
+    
+    // Create floating decorative elements (flowers)
+    function createFlowers() {
+      const decorations = document.getElementById('decorations');
+      
+      for (let i = 0; i < 10; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('decoration', 'flower');
+        flower.style.left = `${Math.random() * 100}vw`;
+        flower.style.top = `${Math.random() * 100}vh`;
+        flower.style.opacity = `${Math.random() * 0.2 + 0.1}`;
+        flower.style.animationDelay = `${Math.random() * 5}s`;
+        decorations.appendChild(flower);
+      }
+    }
+    
+    // Create glowing hearts around special image
+    function createHeartGlows() {
+      const container = document.getElementById('heart-glows');
+      const heartPositions = [
+        {top: '-20px', left: '10%'},
+        {top: '10%', right: '-15px'},
+        {bottom: '-15px', right: '20%'},
+        {bottom: '20%', left: '-10px'},
+        {top: '-10px', right: '15%'},
+      ];
+      
+      heartPositions.forEach(position => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart', 'heart-glow');
+        
+        // Apply positions
+        Object.keys(position).forEach(key => {
+          heart.style[key] = position[key];
+        });
+        
+        // Random animation delay
+        heart.style.animationDelay = `${Math.random() * 2}s`;
+        heart.style.opacity = '0.6';
+        
+        container.appendChild(heart);
+      });
+    }
+    
+    // Initialize decorations and flowers
+    createDecorations();
+    createFlowers();
+    createHeartGlows();
+    
+    // Initialize first slide
+    showSlide(currentSlide);
+  </script>
+</body>
+</html>
